@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
@@ -30,6 +31,12 @@ app.get('/products', (req, res) => {
   ];
 
   return res.json(response);
+});
+
+app.get('/vars', (req, res) => {
+  return res.json({
+    values: process.env.TEST_ENV
+  });
 });
 
 app.get('/', (req, res) => {
