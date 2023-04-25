@@ -12,7 +12,7 @@ export default {
     }
   },
   mounted() {
-    fetch('http://localhost:3030/')
+    fetch('http://localhost:3030/products')
       .then(res => res.json())
       .then(res => {
         this.list = res;

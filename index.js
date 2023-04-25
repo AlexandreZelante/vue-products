@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 
 const app = express();
@@ -6,7 +7,9 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.get('/', (req, res) => {
+app.use(express.static(path.join(__dirname, './dist')));
+
+app.get('/products', (req, res) => {
   const response = [
     {
       id: 1,
@@ -27,6 +30,10 @@ app.get('/', (req, res) => {
   ];
 
   return res.json(response);
+});
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, './dist/index.html'));
 });
 
 app.listen(3030, () => {
